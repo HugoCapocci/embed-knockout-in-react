@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <script defer src="js/ko-bundle.js"></script>
+        <title>Pure Knocckout component</title>
+    </head>
+    <body>
+        <div class="container">
+            <ul class="hidden unstyled-list" data-bind="foreach: products, css: { hidden: !enabled }">
+                <li class="product">
+                    <strong data-bind="text: name"></strong>
+                    <like-widget params="value: userRating"></like-widget>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
