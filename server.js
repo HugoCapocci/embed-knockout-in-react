@@ -22,6 +22,10 @@ app.all('/react', function(req, res){
 	res.sendFile(path.join(__dirname,'public/react.html'));
 });
 
+app.all('/react-ts', function(req, res){
+	res.sendFile(path.join(__dirname,'public/react-ts.html'));
+});
+
 app.all('/ko', function(req, res){
 	res.sendFile(path.join(__dirname,'public/ko.html'));
 });

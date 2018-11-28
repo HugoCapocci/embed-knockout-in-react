@@ -12,19 +12,25 @@ ko.components.register('like-widget', {
     this.dislike = () => {
       this.chosenValue('dislike');
     };
+
+    this.reset = () => {
+      this.chosenValue(null);
+    }
     
     this.isLike = ko.pureComputed(() => 
       this.chosenValue() === 'like'
     );
   },
-  template: `<div class="like-or-dislike" data-bind="visible: !chosenValue()">
-          <button data-bind="click: like"><i class="fa fa-thumbs-o-up"></i> Like it</button>
-          <button data-bind="click: dislike"><i class="fa fa-thumbs-o-down"></i> Dislike it</button>
-      </div>
-      <div class="result" data-bind="visible: chosenValue">
-          <i class="fa" data-bind="css: { 'fa-thumbs-o-up': isLike, 'fa-thumbs-o-down': !isLike() }"></i>
-          <span>You <strong data-bind="text: chosenValue"></strong> it</span>
-      </div>`
+  template: `
+    <div class="like-or-dislike" data-bind="visible: !chosenValue()">
+      <button data-bind="click: like"><i class="fa fa-thumbs-o-up"></i> Like it</button>
+      <button data-bind="click: dislike"><i class="fa fa-thumbs-o-down"></i> Dislike it</button>
+    </div>
+    <div class="result" data-bind="visible: chosenValue">
+      <i class="fa" data-bind="css: { 'fa-thumbs-o-up': isLike, 'fa-thumbs-o-down': !isLike() }"></i>
+      <span>You <strong data-bind="text: chosenValue"></strong> it</span>
+      <button data-bind="click: reset" style="margin-left: 5px;"><i class="fa fa-recycle"></i> Reset</button>
+    </div>`
   }
 );
   

@@ -17,15 +17,20 @@
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
+    "@types/knockout": "^3.4.60",
+    "@types/react": "^16.7.7",
+    "@types/react-dom": "^16.0.11",
     "babel-loader": "^8.0.4",
-    "knockout": "^3.4.2",
     "html-loader": "^0.2.3",
+    "knockout": "^3.4.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "style-loader": "^0.8.1",
+    "ts-loader": "^5.3.1",
+    "typescript": "^3.1.6",
     "url-loader": "^0.5.5",
     "webpack": "^4.17.2",
-    "webpack-cli": "^3.1.0",
-    "webpack-bundle-analyzer": "^3.0.2"
+    "webpack-bundle-analyzer": "^3.0.2",
+    "webpack-cli": "^3.1.0"
   }
 }

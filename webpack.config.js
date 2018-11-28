@@ -4,6 +4,7 @@ const webpack = require('webpack');
 module.exports = {
 	entry: {
 		'react-bundle': './src/Main.jsx',
+		'react-ts-bundle': './src/Main.tsx',
 		'ko-bundle': './src/ko-components/like-widget'
 	},
 	output: {
@@ -28,11 +29,15 @@ module.exports = {
 						],
 					},
 				},
-			  },
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+      },
 		],
 	},
 	resolve: {
-		extensions: ['.js', '.jsx'],
+		extensions: ['.js', '.jsx', '.ts', '.tsx'],
 		modules: [
 			// We want roots to resolve the app code:
 			path.resolve('./node_modules'),
