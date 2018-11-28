@@ -1,7 +1,5 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import * as ko from 'knockout';
-
 import './ko-components/like-widget';
 
 export type UserRating = null | 'like' | 'dislike';
@@ -23,30 +21,28 @@ declare global {
 }
 
 export class ReactWrapper extends React.Component<Props> {
-  __koTrigger: any;
-  __koModel: any
+  koTrigger: any;
+  koModel: any;
+  node!: HTMLDivElement | null;
 
   updateKnockout() {
-    this.__koTrigger(!this.__koTrigger());
+    this.koTrigger(!this.koTrigger());
   }
 
   componentDidMount() {
-    this.__koTrigger = ko.observable(true);
-    this.__koModel = ko.computed(() => {
-
-      this.__koTrigger();
-
+    this.koTrigger = ko.observable(true);
+    this.koModel = ko.computed(() => {
+      this.koTrigger();
       return {
           props: this.props,
           state: this.state
       };
     });
-
-    ko.applyBindings(this.__koModel, ReactDOM.findDOMNode(this));
+    ko.applyBindings(this.koModel, this.node);
   }
 
   componentWillUnmount() {
-      ko.cleanNode(ReactDOM.findDOMNode(this) as Node);
+      ko.cleanNode(this.node as Node);
   }
 
   componentDidUpdate() {
@@ -55,7 +51,7 @@ export class ReactWrapper extends React.Component<Props> {
 
   render() {
       return (
-        <div data-bind="foreach: props.todos">
+        <div data-bind="foreach: props.todos" ref={node => this.node = node}>
           <span data-bind="text: $data.name" />
           <like-widget params="value: $data.userRating" />
         </div>

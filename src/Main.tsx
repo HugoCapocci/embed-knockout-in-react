@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
 import { ReactWrapper, Todo } from './react-wrapper-ts';
 
 const todos: Todo[] = [

@@ -1,8 +1,8 @@
 import ko from 'knockout';
 
 ko.components.register('like-widget', {
-  viewModel: function(params) {
-    this.chosenValue = ko.isObservable(params.value) ? params.value : ko.observable(params.value);     
+  viewModel: function (params) {
+    this.chosenValue = ko.isObservable(params.value) ? params.value : ko.observable(params.value);
 
     // Behaviors
     this.like = () => {
@@ -15,11 +15,9 @@ ko.components.register('like-widget', {
 
     this.reset = () => {
       this.chosenValue(null);
-    }
-    
-    this.isLike = ko.pureComputed(() => 
-      this.chosenValue() === 'like'
-    );
+    };
+
+    this.isLike = ko.pureComputed(() => this.chosenValue() === 'like');
   },
   template: `
     <div class="like-or-dislike" data-bind="visible: !chosenValue()">
@@ -30,10 +28,9 @@ ko.components.register('like-widget', {
       <i class="fa" data-bind="css: { 'fa-thumbs-o-up': isLike, 'fa-thumbs-o-down': !isLike() }"></i>
       <span>You <strong data-bind="text: chosenValue"></strong> it</span>
       <button data-bind="click: reset" style="margin-left: 5px;"><i class="fa fa-recycle"></i> Reset</button>
-    </div>`
-  }
-);
-  
+    </div>`,
+});
+
 function Product(name, rating) {
   this.name = name;
   this.userRating = ko.observable(rating || null);
@@ -43,7 +40,7 @@ function MyViewModel() {
   this.products = [
     new Product('Garlic bread'),
     new Product('Pain au chocolat'),
-    new Product('Seagull spaghetti', 'like') // This one was already 'liked'
+    new Product('Seagull spaghetti', 'like'), // This one was already 'liked'
   ];
   this.enabled = true;
 }
