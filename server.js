@@ -14,27 +14,35 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.all('/', function(req, res){
-	res.sendFile(path.join(__dirname,'public/index.html'));
+app.all('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
-app.all('/react', function(req, res){
-	res.sendFile(path.join(__dirname,'public/react.html'));
+app.all('/react', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/react.html'));
 });
 
-app.all('/react-ts', function(req, res){
-	res.sendFile(path.join(__dirname,'public/react-ts.html'));
+app.all('/react-ts', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/react-ts.html'));
 });
 
-app.all('/ko', function(req, res){
-	res.sendFile(path.join(__dirname,'public/ko.html'));
+app.all('/ko', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/ko.html'));
+});
+
+app.all('/ko-ts', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/ko-ts.html'));
+});
+
+app.all('/ko-react', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/ko-react.html'));
 });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // error handlers
@@ -42,7 +50,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
+  app.use((err, req, res) => {
     res.status(err.status || 500);
     res.send(err);
   });
@@ -50,9 +58,9 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use((err, req, res) => {
   res.status(err.status || 500);
-	res.send(err);
+  res.send(err);
 });
 
 const server = app.listen(5000, 'localhost', () => {

@@ -29,6 +29,7 @@ export default class ReactWrapper extends React.Component {
   }
 
   componentWillUnmount() {
+    console.log('ReactWrapper will unmount');
     ko.cleanNode(this.node);
   }
 

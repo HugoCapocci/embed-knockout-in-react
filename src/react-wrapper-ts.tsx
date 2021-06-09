@@ -2,6 +2,8 @@ import * as React from 'react';
 import * as ko from 'knockout';
 import './ko-components/like-widget';
 
+import { DummyButton } from './react-components/DummyButton';
+
 export type UserRating = null | 'like' | 'dislike';
 export type Todo = {
   name: string;
@@ -24,6 +26,10 @@ export class ReactWrapper extends React.Component<Props> {
   koTrigger: any;
   koModel: any;
   node!: HTMLDivElement | null;
+
+  clickHandler() {
+    console.log('click happend');
+  }
 
   updateKnockout() {
     this.koTrigger(!this.koTrigger());
@@ -51,10 +57,13 @@ export class ReactWrapper extends React.Component<Props> {
 
   render() {
       return (
-        <div data-bind="foreach: props.todos" ref={node => this.node = node}>
-          <span data-bind="text: $data.name" />
-          <like-widget params="value: $data.userRating" />
+        <div>
+          <div data-bind="foreach: props.todos" ref={node => this.node = node}>
+            <span data-bind="text: $data.name" />
+            <like-widget params="value: $data.userRating" />
+          </div>
+          <DummyButton clickHandler={this.clickHandler.bind(this)} buttonLabel="click Me!" />
         </div>
-      )
+      );
   }
 }

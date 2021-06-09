@@ -2,9 +2,26 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    'react-bundle': './src/Main.jsx',
-    'react-ts-bundle': './src/Main.tsx',
-    'ko-bundle': './src/ko-components/like-widget',
+    'react-bundle': [
+      '@babel/polyfill',
+      './src/Main.jsx',
+    ],
+    'react-ts-bundle': [
+      '@babel/polyfill',
+      './src/Main.tsx',
+    ],
+    'ko-component': [
+      '@babel/polyfill',
+      './src/ko-components/like-widget',
+    ],
+    'ko-ts-component': [
+      '@babel/polyfill',
+      './src/ko-components/like-widget.ts',
+    ],
+    'ko-bundle': [
+      '@babel/polyfill',
+      './src/main-knockout.ts',
+    ],
   },
   output: {
     path: path.resolve('public/js'),
@@ -17,6 +34,13 @@ module.exports = {
       { test: /\.html$/, loader: 'html-loader' },
       { test: /\.svg$/, loader: 'url-loader?mimetype=image/svg+xml' },
       {
+        test: /\.(ts|tsx)?$/,
+        use: [
+          'babel-loader',
+          'ts-loader',
+        ],
+      },
+      {
         test: /\.jsx$/,
         exclude: /node_modules/,
         use: {
@@ -28,10 +52,6 @@ module.exports = {
             ],
           },
         },
-      },
-      {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
       },
     ],
   },
